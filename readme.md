@@ -25,15 +25,10 @@ You can create characters with many hero types to choose from, then you can star
 
 
 # Stack Used
-- Laravel 5.4 / PHP 7
+- Laravel 5.4 [PHP 7]
 - Mysql DB
 - AngularJs 1.5
-
-
-# Technical Difficulties
-Symfony 3, last version i have used was 1.4 and it's quite different from this one,
-so i wanted to avoid the risk, and i started learning laravel 5.4 because it supports php 7,
-Also laravel learning curve is a bit forgiving unlike Symfony 3.
+- PHPUnit 6.2
 
 
 # Things i wanted to do
@@ -46,13 +41,21 @@ UI Level
 
 DB Level
 - Create indexes on Match Table, its not straight forward in the laravel migrate
+- Create a foreign key constraint on the lookup table
 
 Code Level
+- Use Symfony 3, unfortunately the last version of symfony i used was 1.4, laravel was the faster choice for me
 - Implement a better algorithms for the hero & villain ability method
 - Include CSRF into the creation form
-- Create Authentication/Users layer, and api token to be used in each call (Route Group Rule)
+- Create Authentication/Users layer, and API token to be used in each call (Route Group Rule)
 - Create limitation for the character creation, so DB won't be flooded with characters
 - Use memcached instead of file caching
-- Make artisan command for creating characters
-- Integrate filters with the restful listing api
+- Integrate filters with the restful listing API
 - Map character type into the correct name while using command line
+- Character client side validation for duplicate
+- Character name validation
+- Move the logic from exposed controllers into handlers
+
+Testing Level
+- Testing BDD, as i have faced few issues running behat with laravel
+- Create more test cases in the Unit folder
