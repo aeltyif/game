@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Rpg as Rpg;
 use Illuminate\Console\Command;
 
 class RpgDelete extends Command
@@ -11,7 +12,7 @@ class RpgDelete extends Command
      *
      * @var string
      */
-    protected $signature = 'rpg:delete';
+    protected $signature = 'rpg:delete {character_id}';
 
     /**
      * The console command description.
@@ -37,6 +38,7 @@ class RpgDelete extends Command
      */
     public function handle()
     {
-        //
+        $character = Rpg\CharacterHandler::destroy($this->argument('character_id'));
+        $this->alert($character['message']);
     }
 }

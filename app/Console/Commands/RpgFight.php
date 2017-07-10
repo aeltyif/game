@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Rpg as Rpg;
 use Illuminate\Console\Command;
 
 class RpgFight extends Command
@@ -11,7 +12,7 @@ class RpgFight extends Command
      *
      * @var string
      */
-    protected $signature = 'rpg:fight';
+    protected $signature = 'rpg:fight {match_code}';
 
     /**
      * The console command description.
@@ -37,6 +38,24 @@ class RpgFight extends Command
      */
     public function handle()
     {
-        //
+        $match = new Rpg\MatchHandler();
+        $results = $match->process($this->argument('match_code'));
+
+        $rolls = ', you rolled : ' . $results['rolls'][0] . ' , opponent : ' . $results['rolls'][1];
+
+        switch($results['outcome'])
+        {
+            case 1:
+                $message = 'You have Lost' . $rolls;
+                break;
+            case 2:
+                $message = 'You have Won' . $rolls;
+                break;
+            default:
+                $message = 'Match not found, use rpg:explore {character_id} to find new challenge';
+                break;
+        }
+
+        $this->alert($message);
     }
 }

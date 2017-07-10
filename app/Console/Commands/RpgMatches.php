@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Rpg as Rpg;
 use Illuminate\Console\Command;
 
 class RpgMatches extends Command
@@ -21,6 +22,12 @@ class RpgMatches extends Command
     protected $description = 'Display a list of the matches';
 
     /**
+     * The headers for the list tabled
+     * @var array
+     */
+    protected $headers = ['ID', 'Character ID', 'Hero ID', 'Villain ID', 'Match Code', 'Outcome'];
+
+    /**
      * Create a new command instance.
      *
      * @return void
@@ -37,6 +44,6 @@ class RpgMatches extends Command
      */
     public function handle()
     {
-        //
+        $this->table($this->headers, Rpg\MatchHandler::list()->toArray());
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App\Console\Commands;
 
+use App\Character;
+use App\Rpg as Rpg;
 use Illuminate\Console\Command;
 
 class RpgExplore extends Command
@@ -11,7 +13,7 @@ class RpgExplore extends Command
      *
      * @var string
      */
-    protected $signature = 'rpg:explore';
+    protected $signature = 'rpg:explore {id}';
 
     /**
      * The console command description.
@@ -37,6 +39,13 @@ class RpgExplore extends Command
      */
     public function handle()
     {
-        //
+        $handler = new Rpg\ExploreHandler;
+        $response = $handler->start(Character::find($this->argument('id')), new Rpg\MatchHandler);
+
+        $message = 'We could not find you a challenger try again';
+        if(!empty($response['code'])) {
+            $message = 'We have found you a new challenger, match code : ' . $response['code'];
+        }
+        $this->alert($message);
     }
 }

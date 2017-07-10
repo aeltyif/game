@@ -33,6 +33,7 @@ class MatchHandler
 
     /**
      * This method will process the entire match and return its results
+     * @Todo: convert into DI, this code is tightly coupled
      *
      * @param  string $code
      * @return array
@@ -68,6 +69,16 @@ class MatchHandler
         $match->result = $status;
         $match->code = '';
         $match->save();
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @return Collection
+     */
+    public static function list()
+    {
+        return Match::orderBy('id', 'desc')->get();
     }
 
     /**

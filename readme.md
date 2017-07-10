@@ -44,6 +44,9 @@ UI Level
 - Show proper messages for each action
 - Show loading before the data gets retrieved
 
+DB Level
+- Create indexes on Match Table, its not straight forward in the laravel migrate
+
 Code Level
 - Implement a better algorithms for the hero & villain ability method
 - Include CSRF into the creation form

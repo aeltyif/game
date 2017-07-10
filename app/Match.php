@@ -8,6 +8,7 @@ class Match extends Model
 {
     protected $table = 'matches';
     protected $fillable = array('id', 'character_id', 'villain_id', 'code', 'result');
+    protected $hidden = array('created_at', 'updated_at');
 
     /**
      * Return the hero object for this match

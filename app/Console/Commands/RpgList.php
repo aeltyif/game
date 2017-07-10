@@ -25,7 +25,7 @@ class RpgList extends Command
      * The headers for the list tabled
      * @var array
      */
-    protected $headers = ['ID', 'Character Name', 'Character Type'];
+    protected $headers = ['ID', 'Hero ID', 'Character Name', 'Character Level'];
 
     /**
      * Create a new command instance.

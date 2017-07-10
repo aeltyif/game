@@ -8,7 +8,7 @@ class Character extends Model
 {
     protected $table = 'characters';
     protected $fillable = array('id', 'hero_id', 'name', 'level');
-    protected $hidden = array('hero_id', 'created_at', 'updated_at');
+    protected $hidden = array('created_at', 'updated_at');
 
     /**
      * Return the hero object for this match

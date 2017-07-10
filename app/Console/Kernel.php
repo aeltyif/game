@@ -15,10 +15,12 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\RpgInfo::class,
         Commands\RpgList::class,
+        Commands\RpgMake::class,
         Commands\RpgExplore::class,
         Commands\RpgFight::class,
         Commands\RpgDelete::class,
-        Commands\RpgMatches::class
+        Commands\RpgMatches::class,
+        Commands\RpgHeroList::class
     ];
 
     /**

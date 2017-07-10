@@ -28,22 +28,8 @@ class CharacterController extends Controller
      */
     public function store(Request $request)
     {
-        $response = [
-            'code' => 201,
-            'error' => false,
-            'message' => 'Created new character',
-        ];
-
-        $character = new Character;
-        $character->hero_id = $request->input('hero_id');
-        $character->name = $request->input('name');
-
-        if(!$character->save()) {
-            $response['code'] = 500;
-            $response['message'] = 'Failed to create character';
-        }
-
-        return response(['message' => $response['message']], $response['code']);
+        $store = Rpg\CharacterHandler::store($request->input('hero_id'), $request->input('name'));
+        return response(['message' => $store['message']], $store['code']);
     }
 
     /**
@@ -65,6 +51,6 @@ class CharacterController extends Controller
      */
     public function destroy(Request $request)
     {
-        return Rpg\CharacterHandler::destroy($request->id);
+        return response(Rpg\CharacterHandler::destroy($request->id));
     }
 }
