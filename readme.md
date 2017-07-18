@@ -21,7 +21,6 @@ You can create characters with many hero types to choose from, then you can star
 - php artisan serve
 - go to your localhost port 8000
 - Type "php artisan rpg:info" to run the game using the terminal
-- Enjoy !!
 
 
 # Stack Used
@@ -29,33 +28,3 @@ You can create characters with many hero types to choose from, then you can star
 - Mysql DB
 - AngularJs 1.5
 - PHPUnit 6.2
-
-
-# Things i wanted to do
-UI Level
-- Optimize the HTML to use one modal, with different param
-- Show the same modal when confirming a character deletion
-- Show exploring/fighting indication
-- Show proper messages for each action
-- Show loading before the data gets retrieved
-
-DB Level
-- Create indexes on Match Table, its not straight forward in the laravel migrate
-- Create a foreign key constraint on the lookup table
-
-Code Level
-- Use Symfony 3, unfortunately the last version of symfony i used was 1.4, laravel was the faster choice for me
-- Implement a better algorithms for the hero & villain ability method
-- Include CSRF into the creation form
-- Create Authentication/Users layer, and API token to be used in each call (Route Group Rule)
-- Create limitation for the character creation, so DB won't be flooded with characters
-- Use memcached instead of file caching
-- Integrate filters with the restful listing API
-- Map character type into the correct name while using command line
-- Character client side validation for duplicate
-- Character name validation
-- Move the logic from exposed controllers into handlers
-
-Testing Level
-- Testing BDD, as i have faced few issues running behat with laravel
-- Create more test cases in the Unit folder
