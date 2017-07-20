@@ -12,7 +12,7 @@ class CharacterHandler
      *
      * @return Collection
      */
-    public static function list(array $models = [])
+    public function list(array $models = [])
     {
         $character = Character::orderBy('id', 'asc');
         if (count($models)) {
@@ -28,31 +28,15 @@ class CharacterHandler
      *
      * @param  int $hero_id
      * @param  string $name
-     * @return array
+     * @return Collection
      */
-    public static function store(int $hero_id, string $name) : array
+    public function store(int $hero_id, string $name)
     {
-        $response = [
-            'code' => 500,
-            'message' => 'Failed to create character',
-        ];
-
         $character = new Character;
         $character->hero_id = $hero_id;
         $character->name = $name;
-
-        //-- Prevent the save method from throwing an exception
-        try {
-            if ($character->save()) {
-                $response['id'] = $character->id;
-                $response['code'] = 201;
-                $response['message'] = 'Created new character';
-            }
-        } catch (\Exception $e) {
-            //-- Do nothing
-        }
-
-        return $response;
+        $character->save();
+        return $character;
     }
 
     /**
@@ -61,7 +45,7 @@ class CharacterHandler
      * @param  int $id
      * @return Collection
      */
-    public static function show(int $id)
+    public function show(int $id)
     {
         return Character::with('hero')->find($id);
     }
@@ -72,17 +56,9 @@ class CharacterHandler
      * @param  int $id
      * @return Collection
      */
-    public static function destroy(int $id)
+    public function destroy(int $id)
     {
-        $response['message'] = 'No such character exists';
-
-        $character = Character::find($id);
-        if (null != $character) {
-            $character->delete();
-            $response['message'] = 'You deleted a character';
-        }
-
-        return $response;
+        return Character::find($id)->delete();
     }
 
     /**
@@ -91,7 +67,7 @@ class CharacterHandler
      * @param  int    $id
      * @param  int    $increment
      */
-    public static function levelUp(int $id, int $increment)
+    public function levelUp(int $id, int $increment)
     {
         $character = Character::find($id);
         $character->level += $increment;

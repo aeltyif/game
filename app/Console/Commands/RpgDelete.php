@@ -38,7 +38,8 @@ class RpgDelete extends Command
      */
     public function handle()
     {
-        $character = Rpg\CharacterHandler::destroy($this->argument('character_id'));
+        $handler = new Rpg\CharacterHandler();
+        $character = $handler->destroy($this->argument('character_id'));
         $this->alert($character['message']);
     }
 }

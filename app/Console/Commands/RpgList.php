@@ -44,6 +44,7 @@ class RpgList extends Command
      */
     public function handle()
     {
-        $this->table($this->headers, Rpg\CharacterHandler::list()->toArray());
+        $handler = new Rpg\CharacterHandler();
+        $this->table($this->headers, $handler->list()->toArray());
     }
 }

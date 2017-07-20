@@ -50,7 +50,8 @@ class MatchHandler
             $this->updateResult($match[0]->id, $match_results['outcome']);
             //-- Level Up
             if ($match_results['outcome'] === 2) {
-                CharacterHandler::levelUp($match[0]->character_id, $match[0]->villain->level_increment);
+                $handler = new CharacterHandler();
+                $handler->levelUp($match[0]->character_id, $match[0]->villain->level_increment);
             }
         }
         return $match_results;

@@ -2,7 +2,6 @@
 
 namespace Tests\Unit;
 
-
 use App\Character;
 use Tests\TestCase;
 use App\Rpg as Rpg;
@@ -26,8 +25,9 @@ class CharacterTest extends TestCase
      */
     public function testCreateCharacter()
     {
-        $create = Rpg\CharacterHandler::store(1, 'Mazok' . rand());
-        $this->assertEquals($create['code'], 201);
+        $handler = new Rpg\CharacterHandler();
+        $create = $handler->store(1, 'Mazok' . rand());
+        $this->assertInstanceOf('App\Character', $create);
         return $create['id'];
     }
 
@@ -40,9 +40,10 @@ class CharacterTest extends TestCase
     public function testCreateDuplicateCharacter($id)
     {
         $error_code = 0;
-        try{
-            Rpg\CharacterHandler::store(1, Character::find($id)->name);
-        } catch(\Exception $e) {
+        $handler = new Rpg\CharacterHandler();
+        try {
+            $response = $handler->store(1, Character::find($id)->name);
+        } catch (\Exception $e) {
             $error_code = $e->getCode();
         }
         $this->assertEquals($error_code, 23000);
@@ -83,7 +84,8 @@ class CharacterTest extends TestCase
      */
     public function testDeleteCharacter($id)
     {
-        $delete = Rpg\CharacterHandler::destroy($id);
-        $this->assertEquals($delete['message'], 'You deleted a character');
+        $handler = new Rpg\CharacterHandler();
+        $delete = $handler->destroy($id);
+        $this->assertTrue($delete);
     }
 }

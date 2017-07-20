@@ -39,7 +39,8 @@ class RpgMake extends Command
     public function handle()
     {
         $message = '';
-        $character = Rpg\CharacterHandler::store($this->argument('hero_type_id'), $this->argument('name'));
+        $handler = new Rpg\CharacterHandler();
+        $character = $handler->store($this->argument('hero_type_id'), $this->argument('name'));
         $message = $character['message'];
         if ($character['code'] == 201) {
             $message .= ' With ID : ' . $character['id'];

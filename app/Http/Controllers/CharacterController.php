@@ -16,7 +16,8 @@ class CharacterController extends Controller
      */
     public function index()
     {
-        return Rpg\CharacterHandler::list(['hero']);
+        $handler = new Rpg\CharacterHandler();
+        return $handler->list(['hero']);
     }
 
     /**
@@ -28,8 +29,9 @@ class CharacterController extends Controller
      */
     public function store(Request $request)
     {
-        $store = Rpg\CharacterHandler::store($request->input('hero_id'), $request->input('name'));
-        return response(['message' => $store['message']], $store['code']);
+        $handler = new Rpg\CharacterHandler();
+        $store = $handler->store($request->input('hero_id'), $request->input('name'));
+        return response(['message' => 'Created new character'], 201);
     }
 
     /**
@@ -40,7 +42,8 @@ class CharacterController extends Controller
      */
     public function show(Request $request)
     {
-        return Rpg\CharacterHandler::show($request->id);
+        $handler = new Rpg\CharacterHandler();
+        return $handler->show($request->id);
     }
 
     /**
@@ -51,6 +54,7 @@ class CharacterController extends Controller
      */
     public function destroy(Request $request)
     {
-        return response(Rpg\CharacterHandler::destroy($request->id));
+        $handler = new Rpg\CharacterHandler();
+        return response($handler->destroy($request->id));
     }
 }
