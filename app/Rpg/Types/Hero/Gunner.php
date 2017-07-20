@@ -8,7 +8,7 @@ class Gunner implements Types\TypeInterface
 {
     /**
      * Do the action of the chosen class
-     * 
+     *
      * @return int
      */
     public function ability() : int

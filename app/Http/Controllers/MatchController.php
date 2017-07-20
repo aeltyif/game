@@ -19,7 +19,7 @@ class MatchController extends Controller
         $results = $match->process($request->id);
 
         //-- You cannot fight unless a match is found
-        if($results['outcome'] === 0) {
+        if ($results['outcome'] === 0) {
             return response([
                 'message' => 'No match was found'
             ], 404);

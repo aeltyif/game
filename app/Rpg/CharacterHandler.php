@@ -15,7 +15,7 @@ class CharacterHandler
     public static function list(array $models = [])
     {
         $character = Character::orderBy('id', 'asc');
-        if(count($models)) {
+        if (count($models)) {
             foreach ($models as $model) {
                 $character->with($model);
             }
@@ -42,13 +42,13 @@ class CharacterHandler
         $character->name = $name;
 
         //-- Prevent the save method from throwing an exception
-        try{
-            if($character->save()) {
+        try {
+            if ($character->save()) {
                 $response['id'] = $character->id;
                 $response['code'] = 201;
                 $response['message'] = 'Created new character';
             }
-        } catch(\Exception $e) {
+        } catch (\Exception $e) {
             //-- Do nothing
         }
 
@@ -77,7 +77,7 @@ class CharacterHandler
         $response['message'] = 'No such character exists';
 
         $character = Character::find($id);
-        if(null != $character) {
+        if (null != $character) {
             $character->delete();
             $response['message'] = 'You deleted a character';
         }

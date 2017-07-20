@@ -43,8 +43,7 @@ class RpgFight extends Command
 
         $rolls = ', you rolled : ' . $results['rolls'][0] . ' , opponent : ' . $results['rolls'][1];
 
-        switch($results['outcome'])
-        {
+        switch ($results['outcome']) {
             case 1:
                 $message = 'You have Lost' . $rolls;
                 break;

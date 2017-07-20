@@ -42,14 +42,14 @@ class MatchHandler
     {
         $match_results = ['outcome' => 0, 'rolls' => [0, 0]];
         $match = Match::where('code', $code)->where('result', 0)->get();
-        if(count($match)) {
+        if (count($match)) {
             //-- Fight
             $contest = new FightHandler($match[0]);
             $match_results = $contest->fight();
             //-- Update
             $this->updateResult($match[0]->id, $match_results['outcome']);
             //-- Level Up
-            if($match_results['outcome'] === 2) {
+            if ($match_results['outcome'] === 2) {
                 CharacterHandler::levelUp($match[0]->character_id, $match[0]->villain->level_increment);
             }
         }

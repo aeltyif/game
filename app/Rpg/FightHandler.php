@@ -28,7 +28,7 @@ class FightHandler
         $hero_class = $this->prefix . 'Hero\\' . $data->hero->name;
         $villain_class = $this->prefix . 'Villain\\' . $data->villain->name;
 
-        if(class_exists($hero_class) && class_exists($villain_class)) {
+        if (class_exists($hero_class) && class_exists($villain_class)) {
             $this->hero = new $hero_class();
             $this->villain = new $villain_class();
         } else {
@@ -47,7 +47,7 @@ class FightHandler
         $result['rolls'][] = $this->hero->ability();
         $result['rolls'][] = $this->villain->ability();
 
-        if($result['rolls'][0] > $result['rolls'][1]) {
+        if ($result['rolls'][0] > $result['rolls'][1]) {
             $result['outcome'] = 2;
         }
 

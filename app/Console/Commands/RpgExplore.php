@@ -43,7 +43,7 @@ class RpgExplore extends Command
         $response = $handler->start(Character::find($this->argument('id')), new Rpg\MatchHandler);
 
         $message = 'We could not find you a challenger try again';
-        if(!empty($response['code'])) {
+        if (!empty($response['code'])) {
             $message = 'We have found you a new challenger, match code : ' . $response['code'];
         }
         $this->alert($message);
